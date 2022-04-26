@@ -1,0 +1,38 @@
+.flex {
+	display: flex;
+}
+.flex-js {
+	.flex;
+	justify-content: space-between;
+}
+.flex-w{
+	.flex;
+	flex-wrap: wrap
+}
+.flex-c {
+	.flex;
+	flex-direction: column;
+}
+/*全局滚动条样式*/
+::-webkit-scrollbar {
+	width: 5px;
+	height: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #b6b6b6;
+}
+.bold {
+	font-weight: bold;
+}
+/* 遍历生成 font-size*/
+.font-for(@n:30, @i: 17) when (@i =< @n) {
+	.fontSize@{i} {
+		font-size: @i* 1px;
+	}
+	.mb@{i}{
+		margin-bottom:@i*1px;
+	}
+	.font-for(@n, (@i + 1));
+}
+.font-for();
