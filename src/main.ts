@@ -5,5 +5,6 @@ import { createPinia } from "pinia";
 // import "./premission";
 import "styles/reset.css";
 import "styles/style.less";
+import api from "@/api";
 const app = createApp(App);
 app.use(router).use(createPinia()).mount("#app");

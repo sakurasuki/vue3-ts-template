@@ -18,7 +18,7 @@ const customFieldName = {
 };
 (async () => {
   try {
-    const { data, msg, code } = await get<Area[]>(api.region);
+    const { data, msg, code } = await get<Area[]>(api.app.region);
     if (code === 200) columns.value = data;
     return Promise.resolve();
   } catch (error) {
