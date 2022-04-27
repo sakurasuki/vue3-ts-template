@@ -20,8 +20,6 @@ Object.values(files).forEach((key: any) => {
     key.default.forEach((item: RouteRecordRaw) => routes.push(item));
   } else routes.push(key.default);
 });
-console.log(routes);
-
 const router = createRouter({
   history: createWebHashHistory(),
   routes,

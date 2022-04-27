@@ -11,7 +11,7 @@ import AutoImport from "unplugin-auto-import/vite";
 const resolve = (dir) => path.join(__dirname, dir);
 // https://vitejs.dev/config/
 export default ({ mode }) => {
-  const { VITE_APP_API, VITE_APP_BASE_URL } = loadEnv(mode, process.cwd());
+  const { VITE_BASE_URL } = loadEnv(mode, process.cwd());
   return defineConfig({
     base: "/",
     plugins: [
@@ -37,9 +37,11 @@ export default ({ mode }) => {
     ],
     server: {
       proxy: {
-        [VITE_APP_API]: {
-          target: VITE_APP_BASE_URL,
-          rewrite: (path) => path.replace(VITE_APP_API, ""),
+        [VITE_BASE_URL]: {
+          target: "https://www.exosomedemon.com/api/",
+          rewrite: (path) => path.replace(VITE_BASE_URL, ""),
+          changeOrigin: true,
+          ws: true,
         },
       },
     },
