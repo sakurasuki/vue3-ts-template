@@ -4,8 +4,8 @@ const show = ref(false);
 </script>
 <template>
   <div>
-    <van-button @click="show = true">显示</van-button>
-    <Address :show="show" />
+    <van-button @click="show = true">span</van-button>
+    <Address :show="show" @close="show = false" />
   </div>
 </template>
 <style lang="less" scoped></style>

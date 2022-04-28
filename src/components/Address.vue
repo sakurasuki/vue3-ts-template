@@ -1,41 +1,22 @@
 <script setup lang="ts">
-import { get } from "@/utils";
-import api from "@/api";
-defineProps<{ show: boolean }>();
-interface Area {
-  name: string;
-  parentCode: string;
-  provinceCode: string;
-  provinceName: string;
-  code: string;
-  children: Array<Area>;
-  [key: string | number]: any;
-}
-const columns = ref<Area[]>([]);
-const customFieldName = {
-  text: "title",
-  children: "children",
-};
-(async () => {
-  try {
-    const { data, msg, code } = await get<Area[]>(api.app.region);
-    if (code === 200) columns.value = data;
-    return Promise.resolve();
-  } catch (error) {
-    console.log(error);
+import { useStore, Area } from "@/store/modules/app";
+const store = useStore();
+const props = defineProps<{ show: boolean }>();
+watch(
+  () => props.show,
+  (n) => {
+    n && store.GET_REGION();
   }
-})();
-
-const onConfirm = (e: any) => {
-  console.log(e);
-};
-const onChange = (e: any) => {
-  console.log(e);
+);
+const emit = defineEmits(["close"]);
+const onConfirm = (arr: Area[]) => {
+  console.log(arr);
+  emit("close");
 };
 </script>
 <template>
-  <van-popup v-model:show="show" position="bottom">
-    <van-picker title="标题" :columns="columns" :columns-field-names="customFieldName" @confirm="onConfirm" @change="onChange" />
+  <van-popup v-model:show="props.show" position="bottom">
+    <van-picker title="标题" :columns="store.region" :columns-field-names="{ text: 'title' }" @confirm="onConfirm" @cancel="emit('close')" />
   </van-popup>
 </template>
 <style lang="less" scoped></style>
