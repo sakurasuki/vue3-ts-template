@@ -4,6 +4,7 @@ import type { AxiosRequestHeaders, AxiosResponse } from "axios";
 const { VITE_BASE_URL } = import.meta.env;
 import { toast, Toast } from "./index";
 import base from "@/base";
+import { Form } from "vant";
 const service = axios.create({
   baseURL: VITE_BASE_URL,
   // timeout: 10000, // request timeout
@@ -66,4 +67,9 @@ const request = <T>(type: "get" | "post", api: string, data: object, loading: bo
 
 const get = <T = any>(api: string, params = {}, loading: boolean = false, headers = {}) => request<T>("get", api, params, loading, headers);
 const post = <T = any>(api: string, data = {}, loading: boolean = false, headers = {}) => request<T>("post", api, data, loading, headers);
-export { get, post, request };
+const formData = <T = any>(api: string, data: { [key: string]: any } = {}, loading: boolean = false) => {
+  const fData = new FormData();
+  Object.keys(data).forEach((k) => fData.append(k, data[k]));
+  return request<T>("post", api, fData, loading, { "Content-Type": "application/x-www-form-urlencoded" });
+};
+export { get, post, request, formData };

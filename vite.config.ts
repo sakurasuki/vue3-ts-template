@@ -15,7 +15,7 @@ export default ({ mode }) => {
   return defineConfig({
     base: "/",
     plugins: [
-      vue(),
+      vue({ reactivityTransform: true }), //开启实验性语法 用于props设置默认值
       vueJsx(),
       visualizer(),
       Components({

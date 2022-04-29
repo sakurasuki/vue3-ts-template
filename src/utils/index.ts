@@ -4,13 +4,13 @@ import "vant/es/toast/index.less";
 import { Toast } from "vant";
 import type { ToastType, ToastOptions } from "vant";
 export { Toast };
-export { get, post, request } from "./request";
+export { get, post, request, formData } from "./request";
 /**
  * toast文字提示
  * @param {object|string} msg
  */
 export const toast = (msgOptions: string | ToastOptions, type: ToastType = "text", duration = 0, forbidClick = true, icon = "") => {
-  if (msgOptions instanceof String) Toast({ message: msgOptions as any, type, duration, forbidClick, icon });
+  if (msgOptions instanceof String) Toast({ message: msgOptions as string, type, duration, forbidClick, icon });
   else Toast(msgOptions);
   return Toast;
 };
