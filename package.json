@@ -32,7 +32,7 @@
     "rollup-plugin-visualizer": "^5.5.2",
     "unplugin-auto-import": "^0.6.1",
     "unplugin-vue-components": "^0.17.21",
-    "vant": "^3.4.8",
+    "vant": "^4.1.0",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12"
   },
